@@ -77,6 +77,7 @@ class Home extends React.Component {
   
     return totalPrice.toFixed(3)
   }
+
 //valores totais com impostos USD
   getTotalValueCashUSD = () => {
     const priceValue = Number(this.state.price)
