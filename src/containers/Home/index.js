@@ -22,7 +22,6 @@ class Home extends React.Component {
     };
   }
 
-
   componentDidMount() {
     const endPoint = 'https://economia.awesomeapi.com.br/all/USD-BRL'
     axios.get(endPoint)
@@ -188,6 +187,6 @@ class Home extends React.Component {
           </MainContainerStyled>
         </div>
       );
-    }
+    } 
   }
   export default Home;

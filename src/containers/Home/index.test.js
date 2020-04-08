@@ -33,3 +33,8 @@ test('deve retornar o componente header' , () => {
     const wrapper = shallow(<Home />);
     expect(wrapper.find('Header').length).toBe(1);
 });
+
+test('deve retornar o componente h111111' , () => {
+    const wrapper = shallow(<Home />);
+    expect(wrapper.find('h1').length).toBe(1);
+});
