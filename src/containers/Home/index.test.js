@@ -48,5 +48,5 @@ test('deve retornar o marcador h2' , () => {
 
 test('deve retornar o marcador p' , () => {
     const wrapper = shallow(<Home />);
-    expect(wrapper.find('p').length).toBe(1);
+    expect(wrapper.find('p').length).toBe(4);
 });

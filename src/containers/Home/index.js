@@ -17,6 +17,7 @@ import cash from '../../img/cash.png';
 import card from '../../img/card.png';
 import Header from '../../components/header';
 
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -157,13 +158,14 @@ showTotalValueUSDNoTax = () => {
     return  priceValue.toFixed(3)
   }
   else if (this.state.paymentSelectedOption === 'card') {
-    return priceValue.toFixed(3)
+    return priceValue.toFixed(3) 
   }
   else {
    return ''
   } 
 
 }
+
     render() {
         const {exchange, price, tax} = this.state
         
@@ -172,8 +174,8 @@ showTotalValueUSDNoTax = () => {
           <Header />
           <MainContainerStyled>
             <div>
-              <h1>Cotação do dia (USD) :</h1>
-              <ExchangeRateCard data={exchange}/>
+              <h1>Cotação do dia (USD) : </h1>
+              <ExchangeRateCard data={exchange} />               
             </div>
 
             <InputsStyled>
@@ -227,13 +229,13 @@ showTotalValueUSDNoTax = () => {
               <TotalStyled>
                 <ImgStyled src = {brasil} alt="bandeira do Brasil" /> Valores em Real:
               </TotalStyled>
-              <p>Valor total com Impostos BRL: {this.showTotalValueBRL()}  </p>
-              <p>Valor total sem Impostos BRL: {this.showTotalValueNoTaxBRL()} </p>
+              <p>Valor total com Impostos BRL: <b>{this.showTotalValueBRL()}</b>  </p>
+              <p>Valor total sem Impostos BRL: <b>{this.showTotalValueNoTaxBRL()}</b> </p>
               <TotalStyled>
                 <ImgStyled src = {eua} alt="bandeira dos Estados Unidos" /> Valores em Dolar: 
               </TotalStyled>
-              <p>Valor total com Impostos USD: {this.showTotalValueUSD()}  </p>
-              <p>Valor total sem Impostos USD: {this.showTotalValueUSDNoTax()}  </p>
+              <p>Valor total com Impostos USD: <b>{this.showTotalValueUSD()}</b>  </p>
+              <p>Valor total sem Impostos USD: <b>{this.showTotalValueUSDNoTax()}</b> </p>
             </TotalValuesStyled>
           </MainContainerStyled>
         </div>

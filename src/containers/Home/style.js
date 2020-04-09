@@ -58,3 +58,12 @@ export const TotalStyled = styled.div`
   display: flex;
   align-items: center;
 `;
+
+
+export const ExchangeStyled = styled.div`
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+`;
+
+
