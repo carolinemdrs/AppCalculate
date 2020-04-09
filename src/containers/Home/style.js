@@ -29,13 +29,9 @@ export const InputsStyled = styled.div`
   gap:8px; 
 `;
 
-
 export const PaymentStyled = styled.div`
   display: flex;
   align-items: center;
-  @media (max-width: 1440px) and (min-width:768px)   {
-   
-  }
 `;
 
 export const FormStyled = styled.div`

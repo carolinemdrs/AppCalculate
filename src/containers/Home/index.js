@@ -29,7 +29,6 @@ class Home extends React.Component {
           this.setState({
               exchange: response.data.USD.high
           })
-          console.log(this.state.exchange)
       })
       .catch(error => {
           console.log(error)
@@ -50,12 +49,20 @@ class Home extends React.Component {
   e.preventDefault();
   }
 
-//valores totais com impostos BRL
-  getTotalValueCashBRL = () => {
+
+//preço com taxa de estado inclusa
+  priceWithLocalTax = () => {
     const priceValue = Number(this.state.price)
     const localTax = Number(this.state.tax / 100 )
     const totalLocalTax = Number(localTax * priceValue)
     const priceWithLocalTax = Number(priceValue + totalLocalTax)
+
+    return priceWithLocalTax
+  }
+
+//calculo de valores totais com impostos BRL
+  getTotalValueCashBRL = () => {
+    const priceWithLocalTax = this.priceWithLocalTax()
     const exchangeValue = Number(this.state.exchange)
     const brTax = Number(exchangeValue * 0.011)
     const totalBrTax = Number(brTax + exchangeValue)
@@ -65,10 +72,7 @@ class Home extends React.Component {
   }
 
   getTotalValueCardBRL = () => {
-    const priceValue = Number(this.state.price)
-    const localTax = Number(this.state.tax / 100 )
-    const totalLocalTax = Number(localTax * priceValue)
-    const priceWithLocalTax = Number(priceValue + totalLocalTax)
+    const priceWithLocalTax = this.priceWithLocalTax()
     const exchangeValue = Number(this.state.exchange)
     const brTax = Number(exchangeValue * 0.0638)
     const totalBrTax = Number(brTax + exchangeValue)
@@ -77,12 +81,9 @@ class Home extends React.Component {
     return totalPrice.toFixed(3)
   }
 
-//valores totais com impostos USD
+//calculo de valores totais com impostos USD
   getTotalValueCashUSD = () => {
-    const priceValue = Number(this.state.price)
-    const localTax = Number(this.state.tax / 100 )
-    const totalLocalTax = Number(localTax * priceValue)
-    const priceWithLocalTax = Number(priceValue + totalLocalTax)
+    const priceWithLocalTax = this.priceWithLocalTax()
     const exchangeValue = Number(this.state.exchange)
     const brTax = Number(exchangeValue * 0.011)
     const totalBrTax = Number(brTax + exchangeValue)
@@ -93,10 +94,7 @@ class Home extends React.Component {
   }
 
   getTotalValueCardUSD = () => {
-    const priceValue = Number(this.state.price)
-    const localTax = Number(this.state.tax / 100 )
-    const totalLocalTax = Number(localTax * priceValue)
-    const priceWithLocalTax = Number(priceValue + totalLocalTax)
+    const priceWithLocalTax = this.priceWithLocalTax()
     const exchangeValue = Number(this.state.exchange)
     const brTax = Number(exchangeValue * 0.0638)
     const totalBrTax = Number(brTax + exchangeValue)
@@ -106,7 +104,7 @@ class Home extends React.Component {
     return totalPriceUSD.toFixed(3)
   }
 
-  //valores totais sem impostos 
+  //calculo de  valores totais sem impostos 
   getTotalValueBRLNoTax = () => {
     const priceValue = Number(this.state.price)
     const exchangeValue = Number(this.state.exchange)
@@ -114,12 +112,42 @@ class Home extends React.Component {
     return totalPrice.toFixed(3)
   }
 
-  getTotalValueUSDNoTax = () => {
-    const priceValue = Number(this.state.price)
-    return priceValue
+  //definição se valores na tela são do método cash ou card
+  showTotalValueBRL = () => {
+    if (this.state.paymentSelectedOption === 'cash') {
+      return  this.getTotalValueCashBRL()
+    }
+    else if (this.state.paymentSelectedOption === 'card') {
+      return this.getTotalValueCardBRL()
+    }
+    else {
+     return ''
+    } 
+}
+
+showTotalValueUSD = () => {
+  if (this.state.paymentSelectedOption === 'cash') {
+    return  this.getTotalValueCashUSD()
   }
+  else if (this.state.paymentSelectedOption === 'card') {
+    return this.getTotalValueCardUSD()
+  }
+  else {
+   return ''
+  } 
+}
 
-
+showTotalValueNoTaxBRL = () => {
+  if (this.state.paymentSelectedOption === 'cash') {
+    return  this.getTotalValueBRLNoTax()
+  }
+  else if (this.state.paymentSelectedOption === 'card') {
+    return this.getTotalValueBRLNoTax()
+  }
+  else {
+   return ''
+  } 
+}
     render() {
         const {exchange, price, tax} = this.state
         
@@ -156,7 +184,7 @@ class Home extends React.Component {
               <h2>Método de Pagamento</h2>
               <PaymentStyled>
                 <ImgStyled src = {cash} />
-                <FormControlLabel 
+                <FormControlLabel
                   value='cash'  
                   control={<Radio />} 
                   label='Dinheiro' 
@@ -176,13 +204,13 @@ class Home extends React.Component {
               </PaymentStyled>
             </FormStyled>
             <TotalValuesStyled>
-              <p>Taxa IOF:  {this.state.paymentSelectedOption === 'cash' ? '1.1%' : '' || this.state.paymentSelectedOption === 'card' ? '6.38%' : ''  }</p>
+              <p>Taxa IOF:  {this.state.paymentSelectedOption === 'cash' ? '1.1%' : '' || this.state.paymentSelectedOption === 'card' ? '6.38%' : '' }</p>
               <TotalStyled><ImgStyled src = {brasil} /> Valores em Real:</TotalStyled>
-              <p>Valor total com Impostos BRL:  {this.state.paymentSelectedOption === 'cash' ?  this.getTotalValueCashBRL() : '' || this.state.paymentSelectedOption === 'card' ? this.getTotalValueCardBRL() : ''}</p>
-              <p>Valor total sem Impostos BRL:  {this.state.paymentSelectedOption === 'cash' ?  this.getTotalValueBRLNoTax() : '' || this.state.paymentSelectedOption === 'card' ? this.getTotalValueBRLNoTax() : ''}</p>
+              <p>Valor total com Impostos BRL: {this.showTotalValueBRL()}  </p>
+              <p>Valor total sem Impostos BRL: {this.showTotalValueNoTaxBRL()} </p>
               <TotalStyled><ImgStyled src = {eua} /> Valores em Dolar: </TotalStyled>
-              <p>Valor total com Impostos USD:  {this.state.paymentSelectedOption === 'cash' ?  this.getTotalValueCashUSD() : '' || this.state.paymentSelectedOption === 'card' ? this.getTotalValueCardUSD() : ''}</p>
-              <p>Valor total sem Impostos USD:  {this.state.paymentSelectedOption === 'cash' ?  this.getTotalValueUSDNoTax() : '' || this.state.paymentSelectedOption === 'card' ? this.getTotalValueUSDNoTax() : ''}</p>
+              <p>Valor total com Impostos USD: {this.showTotalValueUSD()}  </p>
+              <p>Valor total sem Impostos USD: {this.state.price}  </p>
             </TotalValuesStyled>
           </MainContainerStyled>
         </div>
@@ -190,3 +218,4 @@ class Home extends React.Component {
     } 
   }
   export default Home;
+
