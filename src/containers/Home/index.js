@@ -62,7 +62,7 @@ class Home extends React.Component {
     return priceWithLocalTax
   }
 
-//calculo de valores totais com impostos BRL
+//cálculo de valores totais com impostos BRL
   getTotalValueCashBRL = () => {
     const priceWithLocalTax = this.priceWithLocalTax()
     const exchangeValue = Number(this.state.exchange)
@@ -83,7 +83,7 @@ class Home extends React.Component {
     return totalPrice.toFixed(3)
   }
 
-//calculo de valores totais com impostos USD
+//cálculo de valores totais com impostos USD
   getTotalValueCashUSD = () => {
     const priceWithLocalTax = this.priceWithLocalTax()
     const exchangeValue = Number(this.state.exchange)
@@ -106,7 +106,7 @@ class Home extends React.Component {
     return totalPriceUSD.toFixed(3)
   }
 
-  //calculo de  valores totais sem impostos 
+  //cálculo de  valores totais sem impostos 
   getTotalValueBRLNoTax = () => {
     const priceValue = Number(this.state.price)
     const exchangeValue = Number(this.state.exchange)
@@ -114,7 +114,7 @@ class Home extends React.Component {
     return totalPrice.toFixed(3)
   }
 
-  //definição se valores na tela são do método cash ou card
+  //definição de quais valores serão mostrados na tela( de acordo com método de pagamento)
   showTotalValueBRL = () => {
     if (this.state.paymentSelectedOption === 'cash') {
       return  this.getTotalValueCashBRL()
