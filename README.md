@@ -2,7 +2,7 @@
 App para converter dólar em real. Mostra a cotação diária atualizada(api) + cálculos do produto com e sem impostos.
 
 O projeto foi desenvolvido com React, Material UI e Styled Components. Há uso de uma api (para atualização da cotação diária), há poucos testes também. 
-Dentro da pasta containers (src/Containers), há duas pastas de configuração (App e Router), e também, a pasta Home, onde se encontra o código do app. Na pasta Components(src/Components), onde ficam arquivos que podem ser reutilizados em várias pages, há o header.js.Na src, há também uma pasta só para imagens, style (referente a paleta de cores do Material UI) e uma pasta reducers que faz parte da configuração das rotas.
+Dentro da pasta Containers (src/Containers), há duas pastas de configuração (App e Router), e também, a pasta Home, onde se encontra o código do app. Na pasta Components(src/Components), onde ficam arquivos que podem ser reutilizados em várias pages, há o header.js. Na src, há também uma pasta só para imagens, outra para style (referente a paleta de cores do Material UI) e uma pasta reducers que faz parte da configuração das rotas.
 
 
 ## Scripts disponíveis
