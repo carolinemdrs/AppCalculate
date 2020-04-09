@@ -6,17 +6,18 @@ export const Logo = styled.img`
     width:20%;
     margin:6px;
     background-color: #81c784;
-    margin-right:4vh;
+    margin-right:4%;
 
     @media (max-width: 1440px) and (min-width:768px) {
         height:100px;
         width:15%;
-        padding:2vh;
+        padding:0.5%;
+        margin-right:2%;
       }
 `;
 export const Main = styled.div`
     background-color: #81c784;
-    color:white;
+    color:#FFF;
     font-weight:bold;
     display: flex;
     align-items: center;
@@ -31,7 +32,7 @@ export const Main = styled.div`
 const Header = () => {
     return(
         <Main>
-            <Logo src={dolar} />
+            <Logo src={dolar} alt="logo" />
             <h2>My Stone App</h2>
         </Main>
     )   

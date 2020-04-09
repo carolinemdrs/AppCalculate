@@ -4,7 +4,13 @@ import axios from 'axios';
 import ExchangeRateCard from './exchangeCard';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import {MainContainerStyled, ImgStyled, TotalValuesStyled, InputsStyled, PaymentStyled,TotalStyled,FormStyled} from './style';
+import {MainContainerStyled, 
+        ImgStyled, 
+        TotalValuesStyled, 
+        InputsStyled, 
+        PaymentStyled,
+        TotalStyled,
+        FormStyled} from './style';
 import brasil from '../../img/brasil.svg';
 import eua from '../../img/eua.svg';
 import cash from '../../img/cash.png';
@@ -44,11 +50,6 @@ class Home extends React.Component {
       paymentSelectedOption: e.target.value
     });
   }
-
-  handleFormSubmit=(e)=> {
-  e.preventDefault();
-  }
-
 
 //preço com taxa de estado inclusa
   priceWithLocalTax = () => {
@@ -148,6 +149,21 @@ showTotalValueNoTaxBRL = () => {
    return ''
   } 
 }
+
+showTotalValueUSDNoTax = () => {
+  const priceValue = Number(this.state.price)
+
+  if (this.state.paymentSelectedOption === 'cash') {
+    return  priceValue.toFixed(3)
+  }
+  else if (this.state.paymentSelectedOption === 'card') {
+    return priceValue.toFixed(3)
+  }
+  else {
+   return ''
+  } 
+
+}
     render() {
         const {exchange, price, tax} = this.state
         
@@ -159,6 +175,7 @@ showTotalValueNoTaxBRL = () => {
               <h1>Cotação do dia (USD) :</h1>
               <ExchangeRateCard data={exchange}/>
             </div>
+
             <InputsStyled>
               <TextField 
                 type ='number'
@@ -180,10 +197,10 @@ showTotalValueNoTaxBRL = () => {
               />
             </InputsStyled>
 
-            <FormStyled onSubmit={this.handleFormSubmit}>
+            <FormStyled >
               <h2>Método de Pagamento</h2>
               <PaymentStyled>
-                <ImgStyled src = {cash} />
+                <ImgStyled src = {cash} alt="dinheiro" />
                 <FormControlLabel
                   value='cash'  
                   control={<Radio />} 
@@ -192,8 +209,9 @@ showTotalValueNoTaxBRL = () => {
                   checked={this.state.paymentSelectedOption === 'cash'}
                   onChange={this.onChangeRadioButton} />
               </PaymentStyled>
+
               <PaymentStyled>
-                <ImgStyled src = {card} />
+                <ImgStyled src = {card} alt="cartão de crédito" />
                 <FormControlLabel 
                   value='card'  
                   control={<Radio />}
@@ -203,14 +221,19 @@ showTotalValueNoTaxBRL = () => {
                   onChange={this.onChangeRadioButton} />
               </PaymentStyled>
             </FormStyled>
+
             <TotalValuesStyled>
               <p>Taxa IOF:  {this.state.paymentSelectedOption === 'cash' ? '1.1%' : '' || this.state.paymentSelectedOption === 'card' ? '6.38%' : '' }</p>
-              <TotalStyled><ImgStyled src = {brasil} /> Valores em Real:</TotalStyled>
+              <TotalStyled>
+                <ImgStyled src = {brasil} alt="bandeira do Brasil" /> Valores em Real:
+              </TotalStyled>
               <p>Valor total com Impostos BRL: {this.showTotalValueBRL()}  </p>
               <p>Valor total sem Impostos BRL: {this.showTotalValueNoTaxBRL()} </p>
-              <TotalStyled><ImgStyled src = {eua} /> Valores em Dolar: </TotalStyled>
+              <TotalStyled>
+                <ImgStyled src = {eua} alt="bandeira dos Estados Unidos" /> Valores em Dolar: 
+              </TotalStyled>
               <p>Valor total com Impostos USD: {this.showTotalValueUSD()}  </p>
-              <p>Valor total sem Impostos USD: {this.state.price}  </p>
+              <p>Valor total sem Impostos USD: {this.showTotalValueUSDNoTax()}  </p>
             </TotalValuesStyled>
           </MainContainerStyled>
         </div>

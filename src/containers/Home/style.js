@@ -3,20 +3,20 @@ import styled from "styled-components";
 export const MainContainerStyled = styled.div`
   display:flex;
   flex-direction:column;
-  padding:4vh;
+  padding:4%;
   height:100vh;
 
   @media (max-width: 1440px) and (min-width:768px)   {
     align-items:center;
-    padding-right:50vh;
-    padding-left:50vh;
+    padding-right:24.5%;
+    padding-left:24.5%;
     display:flex;
   }
 `;
 
 export const ImgStyled = styled.img`
   width:20%;
-  margin-right:3vh;
+  margin-right:3%;
 
   @media (max-width: 1440px) and (min-width:768px)   {
     width:10%;
@@ -38,8 +38,8 @@ export const FormStyled = styled.div`
  @media (max-width: 1440px) and (min-width:768px)   {
     background-color: #F5F5F5;
     margin-top:15px;
-    width:105vh;
-    padding-left:30vh;
+    width:100%;
+    padding-left:30%;
   }
 `;
 
@@ -48,9 +48,9 @@ export const TotalValuesStyled = styled.div`
   font-style: Marker Felt, fantasy;
 
   @media (max-width: 1440px) and (min-width:768px)   {
-    width:105vh;
+    width:100%;;
     background-color: #F5F5F5;
-    padding-left:30vh;
+    padding-left:30%;
     }
 `;
 

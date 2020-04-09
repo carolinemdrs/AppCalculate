@@ -1,5 +1,7 @@
 import React from 'react';
-import {shallow, mount, configure} from 'enzyme';
+import {shallow, 
+        mount, 
+        configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Home from './index';
 import sinon from 'sinon';
@@ -34,7 +36,17 @@ test('deve retornar o componente header' , () => {
     expect(wrapper.find('Header').length).toBe(1);
 });
 
-test('deve retornar o componente h111111' , () => {
+test('deve retornar o marcador h1' , () => {
     const wrapper = shallow(<Home />);
     expect(wrapper.find('h1').length).toBe(1);
+});
+
+test('deve retornar o marcador h2' , () => {
+    const wrapper = shallow(<Home />);
+    expect(wrapper.find('h2').length).toBe(1);
+});
+
+test('deve retornar o marcador p' , () => {
+    const wrapper = shallow(<Home />);
+    expect(wrapper.find('p').length).toBe(1);
 });
