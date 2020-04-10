@@ -1,7 +1,6 @@
 import React from "react";
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
-import ExchangeRateCard from './exchangeCard';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import {MainContainerStyled, 
@@ -175,7 +174,7 @@ showTotalValueUSDNoTax = () => {
           <MainContainerStyled>
             <div>
               <h1>Cotação do dia (USD) : </h1>
-              <ExchangeRateCard data={exchange} />               
+              <h2>R$ {exchange}</h2>               
             </div>
 
             <InputsStyled>
@@ -204,23 +203,23 @@ showTotalValueUSDNoTax = () => {
               <PaymentStyled>
                 <ImgStyled src = {cash} alt="dinheiro" />
                 <FormControlLabel
-                  value='cash'  
-                  control={<Radio />} 
-                  label='Dinheiro' 
-                  type='radio'
-                  checked={this.state.paymentSelectedOption === 'cash'}
-                  onChange={this.onChangeRadioButton} />
+                  value = 'cash'  
+                  control = {<Radio />} 
+                  label = 'Dinheiro' 
+                  type = 'radio'
+                  checked = {this.state.paymentSelectedOption === 'cash'}
+                  onChange = {this.onChangeRadioButton} />
               </PaymentStyled>
 
               <PaymentStyled>
                 <ImgStyled src = {card} alt="cartão de crédito" />
                 <FormControlLabel 
-                  value='card'  
-                  control={<Radio />}
-                  label='Cartão de crédito'
-                  type='radio'
-                  checked={this.state.paymentSelectedOption === 'card'}
-                  onChange={this.onChangeRadioButton} />
+                  value = 'card'  
+                  control = {<Radio />}
+                  label = 'Cartão de crédito'
+                  type = 'radio'
+                  checked = {this.state.paymentSelectedOption === 'card'}
+                  onChange = {this.onChangeRadioButton} />
               </PaymentStyled>
             </FormStyled>
 
