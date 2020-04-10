@@ -28,6 +28,9 @@ ps. as principais bibliotecas de testes  utilizadas foram Jest e Enzyme.
 
 Prepara o projeto para deploy, após a finaliação do script, pasta build está pronta para deploy.<br />
 
+## Status do Código
+Em constante melhoramento
+
 ## Licença
 Affero GPL
 
